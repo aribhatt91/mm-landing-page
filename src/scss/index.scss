@@ -1,0 +1,341 @@
+@font-face {
+    font-family: mmRegular;
+    src: url(../assets/font/klavika-regular-webfont.woff)
+}
+@font-face {
+    font-family: mmLight;
+    src: url(../assets/font/klavika-light-webfont.woff)
+}
+@font-face {
+    font-family: mmBold;
+    src: url(../assets/font/klavika-bold-webfont.woff)
+}
+@font-face {
+    font-family: mmMedium;
+    src: url(../assets/font/klavika-medium-webfont.woff)
+}
+$textColor: #fff;
+$pageMargin: 24px;
+body {
+    margin: 0;
+    background-color: #000;
+    header {
+        font-size: 16px;
+    }
+}
+
+
+.monk-slider-container{
+    width: 100%;
+    overflow-x: hidden;
+    height: auto;
+    position: relative;
+    .bg_image {
+        position: absolute;
+        width: auto;
+        height: 100%;
+        top: 0;
+        left: 0;
+        transition: 0.5s all ease-in-out;
+        z-index: -1;
+        // background-image: url(../assets/images/background.jpg);
+        // background-color: transparent;
+        // background-size: contain;
+        // background-position-x: 0;
+        // background-position-y: 100%;
+        // background-repeat: no-repeat;
+    }
+    .monk-slider {
+        list-style-type: none;
+        transition: 0.4s all ease-in-out;
+        overflow-x: hidden;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: nowrap;
+        // background-image: url(../assets/images/background.jpg);
+        background-color: transparent;
+        // background-size: contain;
+        // background-position-x: 0;
+        // background-position-y: 100%;
+        // background-repeat: no-repeat;
+
+        .monk-slider-item {
+            list-style-type: none;
+            width: 100vw;
+            height: 100vh;
+            display: block;
+            padding: $pageMargin;
+            box-sizing: border-box;
+            position: relative;
+
+            h3 {
+                font-family: mmLight;
+                text-decoration: underline;
+                font-size: 2em;
+                text-transform: uppercase;
+                margin: 0;
+            }
+            * {
+                color: $textColor;
+                transition: 0.8s;
+                opacity: 0;
+            }
+            &[active] {
+                .parallax-el {
+                    transition: 0.6s;
+                    transform: translateX(0%);
+                    opacity: 1;
+                }
+                * {
+                    opacity: 1;
+                }
+            }
+            &:last-child {
+                justify-content: flex-end;
+            }
+
+            .parallax-el {
+                transition: 0.6s;
+                transform: translateX(40%);
+                opacity: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                float: right;
+                height: 100%;
+                text-align: end;
+                h3, div, p, span, a {
+                    text-align: end;
+                    color: $textColor;
+                }
+                a, a:hover, a:focus, a:active, a:visited {
+                    text-decoration: underline;
+                    color:$textColor;
+                }
+                p {
+                    font-family: mmLight;
+                }
+                p.media {
+                    
+                    a, a:hover, a:focus, a:active, a:visited  {
+                        text-decoration: none;
+                        margin-left: 16px;
+                        display: inline-flex;
+                        span {
+                            width: 18px;
+                            height: 16px;
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: center;
+                            display: inline-flex;
+                            margin-right: 4px;
+                        }
+                        span.mail {
+                            background-image: url(../assets/images/envelope-square.png);
+                        }
+                        span.fb {
+                            background-image: url(../assets/images/facebook.png);
+                        }
+                        span.twitter {
+                            background-image: url(../assets/images/twitter.png);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .slider-nav-btn {
+        width: 30px;
+        height: 30px;
+        background-color: transparent;
+        transform: rotate(45deg);
+        position: absolute;
+        top: 50%;
+        margin-top: -15px;
+        cursor: pointer;
+
+        &.next-btn {
+            right: $pageMargin;
+            border-right: 2px solid $textColor;
+            border-top: 2px solid $textColor;
+        }
+        &.prev-btn {
+            left: $pageMargin;
+            border-left: 2px solid $textColor;
+            border-bottom: 2px solid $textColor;
+        }
+    }
+    .pagination {
+        border: 1px dashed $textColor;
+        position: absolute;
+        left: $pageMargin;
+        bottom: $pageMargin;
+        display: inline-flex;
+        .page {
+            color: $textColor;
+            font-size: 10px;
+            padding: 0px 6px;
+            margin: 1px;
+            cursor: pointer;
+            font-family: mmLight;
+            &:first-child, &:last-child{
+                color: transparent;
+            }
+            &:not(:first-child){
+                border-left: 1px dashed $textColor;
+            }
+            &[active] {
+                color: transparent;
+                background-color: $textColor;
+            }
+        }
+    }
+    .mm-logo {
+        position: absolute;
+        bottom: 0;
+        right: $pageMargin;
+        font-size: 1.5em;
+        font-family: mmRegular;
+        line-height: 1;
+        color: $textColor;
+        text-transform: uppercase;
+        text-decoration: none;
+        &:hover, &:focus, &:active {
+            text-decoration: none;
+            opacity: 1;
+            color: $textColor;
+        }
+        svg {
+            height: 108px;
+            width: 108px;
+            fill: $textColor;
+        }
+    }
+}
+
+.splash {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: 0.4s;
+    background-color: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .monk {
+        width: 100px;
+        height: 120px;
+        background-image: url('../assets/images/monk.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: 0.5s all ease-in-out;
+        transform: scale(0.2);
+        opacity: 0;
+        &.drop {
+            transform: scale(1);
+            opacity: 1;
+        }
+        &.bounce {
+            animation: bounce 1s infinite;
+            -webkit-animation: bounce 1s infinite;
+            -moz-animation: bounce 1s infinite;
+            -o-animation: bounce 1s infinite;
+        }
+    }
+    .monk-text {
+        font-size: 16px;
+        font-family: mmLight;
+        color: $textColor;
+        text-align: center;
+        display: inline-block;
+        margin-top: 30px;
+        opacity: 0;
+        transition: 0.3s;
+        .first {
+            font-style: italic;
+        }
+        &.zap {
+            opacity: 1;
+            animation: zap 0.6s;
+            -webkit-animation: zap 0.6s 0s;
+            -moz-animation: zap 0.6s 0s;
+            -o-animation: zap 0.6s 0s;
+        }
+    }
+}
+
+.center-right {
+    float: right;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    text-align: end;
+    margin-right: 40px !important;
+}
+.center-left {
+    float: left;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: 40px !important;
+}
+.top-right {
+    float: right;
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+    text-align: end;
+    margin-right: 40px !important;
+}
+
+$translateBounce: -10px;
+
+@mixin prefixer($prop, $val) {
+    -webkit-#{$prop}: $val;
+}
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+      @content; 
+    }
+    @-moz-keyframes #{$name} {
+      @content;
+    }
+    @-ms-keyframes #{$name} {
+      @content;
+    }
+    @keyframes #{$name} {
+      @content;
+    } 
+  }
+ 
+@-webkit-keyframes bounce {
+	0%, 100% {-webkit-transform: translateY(0);}	
+	50% {-webkit-transform: translateY($translateBounce);}
+}
+ 
+@-moz-keyframes bounce {
+	0%, 100% {-moz-transform: translateY(0);}
+	50% {-moz-transform: translateY($translateBounce);}
+}
+ 
+@-o-keyframes bounce {
+	0%, 100% {-o-transform: translateY(0);}
+	50% {-o-transform: translateY($translateBounce);}
+}
+@keyframes bounce {
+	0%, 100% {transform: translateY(0);}
+	50% {transform: translateY($translateBounce);}
+}
+
+@keyframes zap {
+    0% {transform: scale(0);}
+	60%, 100% {transform: scale(1);}
+	80% {transform: scale(0.8);}
+}
